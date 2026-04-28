@@ -337,16 +337,7 @@ def main():  # pylint: disable=too-many-branches,too-many-statements,too-many-lo
     fields = args.fields
 
     def convert(in_file, out_file):
-        _hcl_to_json(
-            in_file,
-            out_file,
-            options,
-            json_indent=json_indent,
-            compact_separators=compact,
-            only=only,
-            exclude=exclude,
-            fields=fields,
-        )
+        pass
 
     # Default to stdin when no paths given
     paths = args.PATH if args.PATH else ["-"]

@@ -456,15 +456,7 @@ class OutputSink:
 
     def flush(self) -> None:
         """Sort and emit accumulated JSON results."""
-        if not self._accumulator:
-            return
-        self._accumulator.sort(
-            key=lambda x: x.get("__file__", "") if isinstance(x, dict) else ""
-        )
-        print(
-            json.dumps(self._accumulator, indent=self.config.json_indent, default=str)
-        )
-        self._accumulator.clear()
+        pass
 
 
 # ---------------------------------------------------------------------------
@@ -518,29 +510,7 @@ def _process_file(args_tuple):
     Returns ``(file_path, exit_code, converted_results, error_msg)``.
     All return values are picklable plain Python objects.
     """
-    file_path, query, is_eval, raw_query, multi, output_config = args_tuple
-
-    try:
-        text = _read_input(file_path)
-    except (OSError, IOError) as exc:
-        return (file_path, EXIT_IO_ERROR, None, str(exc))
-
-    try:
-        doc = DocumentView.parse(text)
-    except Exception as exc:  # pylint: disable=broad-except
-        return (file_path, EXIT_PARSE_ERROR, None, str(exc))
-
-    try:
-        results = _dispatch_query(query, is_eval, doc, file_path=file_path)
-    except Exception as exc:  # pylint: disable=broad-except
-        return (file_path, EXIT_QUERY_ERROR, None, str(exc))
-
-    if not results:
-        return (file_path, EXIT_SUCCESS, [], None)
-
-    converted = _convert_results(results, file_path, multi, output_config)
-
-    return (file_path, EXIT_SUCCESS, converted, None)
+    pass
 
 
 def _run_diff(

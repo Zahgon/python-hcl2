@@ -235,7 +235,7 @@ def main():  # pylint: disable=too-many-branches,too-many-statements,too-many-lo
     quiet = args.quiet
 
     def convert(in_file, out_file):
-        _json_to_hcl(in_file, out_file, d_opts, f_opts)
+        pass
 
     # Default to stdin when no paths given
     paths = args.PATH if args.PATH else ["-"]
